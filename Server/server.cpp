@@ -3,7 +3,6 @@
 Server::Server(QObject *parent)
     : QTcpServer{parent}
 {
-    // m_dataBase = new DateBaseHandler();
     qInfo()<<"db server"<< &(DateBaseHandler::getInstance());
     pool = new QThreadPool(this);
     pool->setMaxThreadCount(200);
@@ -13,7 +12,6 @@ Server::Server(QObject *parent)
 
 Server::~Server()
 {
-    // delete m_dataBase;
     delete pool;
 }
 

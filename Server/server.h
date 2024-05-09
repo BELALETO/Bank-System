@@ -29,8 +29,6 @@ protected:
 private:
     QThreadPool *pool;
     Logger *ServerLogs;
-    // DateBaseHandler *m_dataBase;
-    // DateBaseHandler dataBaseManager;
 };
 
 
