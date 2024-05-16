@@ -282,9 +282,14 @@ QJsonObject DateBaseHandler::viewTransaction_History(QJsonObject data)
         count = jArray.count();
     }
 
-    for(int i = jArray.count(); i > (jArray.count()- count); i--)
+    for(int i = jArray.count() - 1; i >=0 ; i--)
     {
         rArray.append(jArray.at(i));
+        count--;
+        if(count == 0)
+        {
+            break;
+        }
     }
 
     r_obj.insert("ResponseID", "3");

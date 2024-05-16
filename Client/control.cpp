@@ -4,7 +4,7 @@ Control::Control(QObject *parent)
     : QObject{parent}
 {
 
-    m_handler = new socketHandler("192.168.1.13",2222, this);
+    m_handler = new socketHandler("127.0.0.1",2222, this);
 
     connect(m_handler, &socketHandler::SH_Control_connected_Signal, this, &Control::SH_Control_connected_Slot);
     connect(m_handler, &socketHandler::SH_Control_disconnected_signal, this, &Control::SH_Control_disconnected_slot);

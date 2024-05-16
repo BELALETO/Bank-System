@@ -4,6 +4,7 @@
 #include "mainwindow.h"
 #include "admindialog.h"
 #include "userdialog.h"
+#include "control.h"
 
 class View : public QWidget
 {
@@ -70,6 +71,7 @@ public:
     MainWindow *m_mainWindow;
     AdminDialog *m_adminWindow;
     UserDialog *m_userWindow;
+    Control *m_control;
 };
 
 #endif // VIEW_H

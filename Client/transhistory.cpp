@@ -11,21 +11,21 @@ TransHistory::TransHistory(QWidget *parent)
     countRegx.setPattern("^(?!0*(?:10{7}|[1-9]\\d{6,}))\\d{1,6}(?:\\.\\d+)?$");
     ui->numBox->setValidator(new QRegularExpressionValidator(numRegx,this));
     ui->countBox->setValidator(new QRegularExpressionValidator(countRegx, this));
+    ui->tableWidget->setRowCount(200);
 }
 
 void TransHistory::TransactionHistory_action(QJsonObject l_response)
 {
-    // QMessageBox::information(this, "Info", "welocme back!");
-    ui->textEdit->clear();
+    ui->tableWidget->clear();
     QJsonArray l_array(l_response.value("TransactionHistory").toArray());
     qInfo() << "the size of array is: " << l_array.count();
-    int i{1};
-    foreach (auto obj, l_array)
+    for(int i = 0; i < l_array.count(); i++)
     {
-        QString date = obj.toObject().value("date").toString();
-        int amount = obj.toObject().value("amount").toInt();
+        QString date = l_array.at(i).toObject().value("date").toString();
+        double amount = l_array.at(i).toObject().value("amount").toDouble();
 
-        ui->textEdit->append("Transaction " +QString::number(i++)+": Date:- "+date+" Amount:- "+QString::number(amount));
+        ui->tableWidget->setItem(i,0,new QTableWidgetItem(QString::number(amount)));
+        ui->tableWidget->setItem(i,1,new QTableWidgetItem(date));
     }
 
     qInfo() << "Database viewed sucessfully!";

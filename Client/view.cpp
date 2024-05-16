@@ -4,6 +4,43 @@ View::View(QWidget *parent)
     : QWidget{parent}
 {
     m_mainWindow = new MainWindow(this);
+
+    m_control = new Control(this);
+    connect(this, &View::makeRequest, m_control, &Control::makeRequest);
+    connect(this, &View::RC_View_Control_Signal, m_control, &Control::RC_View_Control_Slot);
+
+    connect(m_control, &Control::SH_Contor_View_connected_signal, this, &View::SH_Contor_View_connected_slot);
+    connect(m_control, &Control::SH_Contor_View_disconnected_signal, this, &View::SH_Contor_View_disconnected_slot);
+
+    connect(m_control, &Control::adminScreen_signal, this, &View::adminScreen_slot); // to view admin screen.
+    connect(m_control, &Control::UserScreen_signal, this, &View::UserScreen_slot);   // to view admin screen.
+
+    connect(m_control, &Control::CU_Control_Client, this, &View::CU_Client_View);
+    connect(m_control, &Control::UU_Control_Client, this, &View::UU_Client_View);
+
+    connect(m_control, &Control::DU_Control_Client, this, &View::DU_Client_View);
+
+    connect(m_control, &Control::AN_Control_View_action, this, &View::AN_Control_View_action);
+    connect(m_control, &Control::AB_Control_View_action, this, &View::AB_Control_View_action);
+    connect(m_control, &Control::DB_Control_View_action, this, &View::DB_Control_View_action);
+
+    connect(m_control, &Control::MT_Control_View_action, this, &View::MT_Control_View_action);
+    connect(m_control, &Control::TA_Control_View_action, this, &View::TA_Control_View_action);
+
+    connect(m_control, &Control::TH_Control_View_action, this, &View::TH_Control_View_action);
+
+
+    //error connections
+
+    connect(m_control, &Control::existUsr_Control_View_action, this, &View::existUsr_Control_View_action);
+    connect(m_control, &Control::InvalidTransaction_Control_View_action, this, &View::InvalidTransaction_Control_View_action);
+    connect(m_control, &Control::wrongUsr_Control_View_action, this, &View::wrongUsr_Control_View_action);
+    connect(m_control, &Control::noUsr_Control_View_action, this, &View::noUsr_Control_View_action);
+    connect(m_control, &Control::ServerError_Control_View_action, this, &View::ServerError_Control_View_action);
+
+    connect(m_control, &Control::closedSocket_Control_View_signal, this, &View::closedSocket_Control_View_slot);
+
+
     connect(m_mainWindow, &MainWindow::sendRequest_mW_View, this, &View::sendRequest_mW_View);
     connect(m_mainWindow, &MainWindow::RC_MW_View_signal, this, &View::RC_MW_View_slot);
 
@@ -428,7 +465,6 @@ void View::SH_Contor_View_disconnected_slot()
 
 
         m_mainWindow->enable_refresh();
-        // m_mainWindow->disable_login();
         delete m_adminWindow;
         m_adminWindow = nullptr;
         m_mainWindow->show();
@@ -442,7 +478,6 @@ void View::SH_Contor_View_disconnected_slot()
 
 
         m_mainWindow->enable_refresh();
-        // m_mainWindow->disable_login();
         delete m_userWindow;
         m_userWindow = nullptr;
         m_mainWindow->show();
@@ -452,7 +487,6 @@ void View::SH_Contor_View_disconnected_slot()
 void View::closedSocket_Control_View_slot()
 {
     m_mainWindow->closedSocket_MessageBox();
-    // m_mainWindow->disable_login();
 }
 
 

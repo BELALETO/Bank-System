@@ -8,6 +8,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QTableWidget>
 
 namespace Ui {
 class TransHistory;

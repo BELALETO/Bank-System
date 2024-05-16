@@ -1,12 +1,12 @@
 
 #include <QApplication>
 #include <QScopedPointer>
-#include "client.h"
+#include "view.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    Client c;
+    View view;
 
     return a.exec();
 }
