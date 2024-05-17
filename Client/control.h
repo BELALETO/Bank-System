@@ -39,7 +39,7 @@ public slots:
     void closedSocket_Slot();
 
     //reconnect slot
-    void RC_View_Control_Slot();
+    void RC_View_Control_Slot(QString hostIP);
     void SH_Control_connected_Slot(); //at start of connected state.
     void SH_Control_disconnected_slot();
 

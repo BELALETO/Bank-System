@@ -85,8 +85,8 @@ void MainWindow::on_loginBtn_clicked()
 {
     QString usrName = ui->nameBox->text().trimmed();
     QString usrPass = ui->passBox->text().trimmed();
-
-    if(usrName.isEmpty() || usrPass.isEmpty())
+    QString hostIP = ui->ipBox->text().trimmed();
+    if(usrName.isEmpty() || usrPass.isEmpty() || hostIP.isEmpty())
     {
         QMessageBox::warning(this, "Warning", "Please fill all wanted information.");
     }
@@ -142,7 +142,9 @@ void MainWindow::on_passBox_textChanged(const QString &arg1)
 
 void MainWindow::on_refresh_btn_clicked()
 {
+    QString hostIP = ui->ipBox->text().trimmed();
     //emit to View
-    emit RC_MW_View_signal();
+    emit RC_MW_View_signal(hostIP);
 }
+
 

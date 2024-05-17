@@ -17,6 +17,9 @@ public:
     void re_connect();
     void disconnect();
 
+    QString hostName() const;
+    void setHostName(const QString &newHostName);
+
 private slots:
     void connected();
     void disconnected();

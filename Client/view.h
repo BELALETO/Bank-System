@@ -14,7 +14,7 @@ public:
 signals:
 
     void makeRequest(QByteArray);
-    void RC_View_Control_Signal();
+    void RC_View_Control_Signal(QString hostIP);//temp
 
     void shutDown_Client_signal(); //to  destroy all components.
 
@@ -58,7 +58,7 @@ public slots:
     // void noConnection_Control_View_action();
 
 
-    void RC_MW_View_slot();//reconnection slot
+    void RC_MW_View_slot(QString hostIP);//reconnection slot
 
     void SH_Contor_View_connected_slot();
     void SH_Contor_View_disconnected_slot();

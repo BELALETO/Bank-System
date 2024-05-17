@@ -158,9 +158,10 @@ void Control::closedSocket_Slot()
     emit closedSocket_Control_View_signal();
 }
 
-void Control::RC_View_Control_Slot()
+void Control::RC_View_Control_Slot(QString hostIP)
 {
     qInfo() << "I reached re_connect button";
+    m_handler->setHostName(hostIP);
     m_handler->re_connect();
 }
 

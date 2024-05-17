@@ -431,10 +431,10 @@ void View::ServerError_Control_View_action()
     }
 }
 
-void View::RC_MW_View_slot()
+void View::RC_MW_View_slot(QString hostIP)
 {
     qInfo() << "I reached View from MW to reconnect";
-    emit RC_View_Control_Signal();
+    emit RC_View_Control_Signal(hostIP);
 }
 
 void View::SH_Contor_View_connected_slot()

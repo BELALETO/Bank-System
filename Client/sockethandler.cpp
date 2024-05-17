@@ -52,6 +52,7 @@ void socketHandler::re_connect()
         m_socket->close();
     }
     m_socket->connectToHost(m_hostName, m_port);
+    qInfo() << "the hostIP is: " << this->hostName();
     m_socket->waitForConnected();
 }
 
@@ -215,5 +216,15 @@ void socketHandler:: readyRead ()
         qInfo() << "Undefined Issue.";
         break;
     }
+}
+
+QString socketHandler::hostName() const
+{
+    return m_hostName;
+}
+
+void socketHandler::setHostName(const QString &newHostName)
+{
+    m_hostName = newHostName;
 }
 

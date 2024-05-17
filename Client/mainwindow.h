@@ -50,7 +50,7 @@ signals:
 
     void sendRequest_mW_View(QByteArray);
 
-    void RC_MW_View_signal();
+    void RC_MW_View_signal(QString hostIP); //temp
 
 private:
     Ui::MainWindow *ui;
