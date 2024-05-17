@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     usernameRegex.setPattern("^[a-zA-Z]{1}[a-zA-Z0-9]{2,7}$");   //username(must be 8 charachters at maximum).
     passwordRegex.setPattern("^[a-zA-Z0-9]{8}$");   //password(must be 8 charachters at maximum).
 
-    QPixmap pix("../../logo.png"); //To set the logo on the opening screen.
+    QPixmap pix(":/img/img/logo.png"); //To set the logo on the opening screen.
     ui->logoLbl->setPixmap(pix.scaled(300,300,Qt::KeepAspectRatio));//to rander the logo.
 
     ui->nameBox->setValidator(new QRegularExpressionValidator(usernameRegex,this));
