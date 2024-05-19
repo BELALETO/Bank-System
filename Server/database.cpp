@@ -1,12 +1,12 @@
-#include "datebasehandler.h"
+#include "database.h"
 
 
-qint16 DateBaseHandler:: userID = 0;
+qint16 Database:: userID = 0;
 
-DateBaseHandler::DateBaseHandler()
+Database::Database()
 {
     qInfo() << "Hello from dataBase!";
-    DataBaseFile = new QFile("./myDataBase.json");
+    DataBaseFile = new QFile("myDataBase.json");
 
     if(!DataBaseFile->exists())
     {
@@ -33,18 +33,18 @@ DateBaseHandler::DateBaseHandler()
     DBLogger = new Logger("./dbLogger.log");
 }
 
-DateBaseHandler &DateBaseHandler::getInstance()
+Database &Database::getInstance()
 {
-    static DateBaseHandler* handler= nullptr;
+    static Database* handler= nullptr;
     if(handler == nullptr)
     {
-        handler =new DateBaseHandler();
+        handler =new Database();
     }
 
     return *handler;
 }
 
-QJsonObject DateBaseHandler::logIn(QJsonObject data)
+QJsonObject Database::logIn(QJsonObject data)
 {
     QMutexLocker<QMutex> lock(&mutex);
 
@@ -120,7 +120,7 @@ QJsonObject DateBaseHandler::logIn(QJsonObject data)
 }
 
 
-QJsonObject DateBaseHandler::getAccount_Number(QJsonObject data)
+QJsonObject Database::getAccount_Number(QJsonObject data)
 {
     QMutexLocker<QMutex> lock(&mutex);
 
@@ -173,7 +173,7 @@ QJsonObject DateBaseHandler::getAccount_Number(QJsonObject data)
 }
 
 
-QJsonObject DateBaseHandler::viewAccount_Balance(QJsonObject data)
+QJsonObject Database::viewAccount_Balance(QJsonObject data)
 {
     QMutexLocker<QMutex> lock(&mutex);
 
@@ -227,7 +227,7 @@ QJsonObject DateBaseHandler::viewAccount_Balance(QJsonObject data)
     return r_obj;
 }
 
-QJsonObject DateBaseHandler::viewTransaction_History(QJsonObject data)
+QJsonObject Database::viewTransaction_History(QJsonObject data)
 {
     QMutexLocker<QMutex> lock(&mutex);
 
@@ -299,7 +299,7 @@ QJsonObject DateBaseHandler::viewTransaction_History(QJsonObject data)
     return r_obj;
 }
 
-QJsonObject DateBaseHandler::makeTransaction(QJsonObject data)
+QJsonObject Database::makeTransaction(QJsonObject data)
 {
     QMutexLocker<QMutex> lock(&mutex);
 
@@ -389,7 +389,7 @@ QJsonObject DateBaseHandler::makeTransaction(QJsonObject data)
     return jResponse;
 }
 
-QJsonObject DateBaseHandler::transferAmount(QJsonObject data)
+QJsonObject Database::transferAmount(QJsonObject data)
 {
     QMutexLocker<QMutex> lock(&mutex);
 
@@ -512,7 +512,7 @@ QJsonObject DateBaseHandler::transferAmount(QJsonObject data)
 }
 
 
-QJsonObject DateBaseHandler::viewBankDB(QJsonObject data)
+QJsonObject Database::viewBankDB(QJsonObject data)
 {
     QMutexLocker<QMutex> lock(&mutex);
 
@@ -540,7 +540,7 @@ QJsonObject DateBaseHandler::viewBankDB(QJsonObject data)
     return obj;
 }
 
-QJsonObject DateBaseHandler::createUser(QJsonObject data)
+QJsonObject Database::createUser(QJsonObject data)
 {
 
     QMutexLocker<QMutex> lock(&mutex); // Lock mutex to ensure thread safety
@@ -634,7 +634,7 @@ QJsonObject DateBaseHandler::createUser(QJsonObject data)
 }
 
 
-QJsonObject DateBaseHandler::deleteUser(QJsonObject data)
+QJsonObject Database::deleteUser(QJsonObject data)
 {
     QJsonObject jResponse;
     // Read the JSON file
@@ -699,7 +699,7 @@ QJsonObject DateBaseHandler::deleteUser(QJsonObject data)
 
 
 
-QJsonObject DateBaseHandler::updateUser(QJsonObject data)
+QJsonObject Database::updateUser(QJsonObject data)
 {
     QJsonObject jResponse;
     // Read the JSON file

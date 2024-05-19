@@ -1,5 +1,5 @@
-#ifndef REQUESTHANDLER_H
-#define REQUESTHANDLER_H
+#ifndef REQUEST_H
+#define REQUEST_H
 
 #include <QDebug>
 #include <QJsonObject>
@@ -8,19 +8,19 @@
 #include <QJsonDocument>
 #include <QJsonParseError>
 #include "logger.h"
-#include "datebasehandler.h"
+#include "database.h"
 
-class requestHandler
+class Request
 {
 public:
-    requestHandler();
+    Request();
     QByteArray handleReaquest(QByteArray request);
-    // DateBaseHandler databaseManger;
+    // Database databaseManger;
 
 private:
     enum requestIDs{LogIn_ID, GetAccuont_ID, ViewAccount_ID, ViewTransactionHistory_ID, MakeTransaction_ID, TransferAmount_ID, ViewBankDB_ID, CreateUser_ID, DeleteUser_ID, UpDateUser_ID};
     Logger *requestLogs;
-    DateBaseHandler& dataBaseManager;
+    Database& dataBaseManager;
 };
 
-#endif // REQUESTHANDLER_H
+#endif // REQUEST_H

@@ -3,7 +3,7 @@
 Server::Server(QObject *parent)
     : QTcpServer{parent}
 {
-    qInfo()<<"db server"<< &(DateBaseHandler::getInstance());
+    qInfo()<<"db server"<< &(Database::getInstance()); //getting instance of Database(singleton).
     pool = new QThreadPool(this);
     pool->setMaxThreadCount(200);
 
@@ -12,6 +12,7 @@ Server::Server(QObject *parent)
 
 Server::~Server()
 {
+    // delete m_dataBase;
     delete pool;
 }
 
@@ -39,8 +40,8 @@ void Server::quitServer()
 void Server::incomingConnection(qintptr handle)
 {
     qInfo() << QThread::currentThread();
-    ClientHandler *handler = new ClientHandler(handle); //creating  a new connection in another thread.
+    Client *handler = new Client(handle); //creating  a new connection in another thread.
     handler->setAutoDelete(true);
-    pool->start(handler);
+    pool->start(handler);//starting a thread for the new connected client.
 }
 

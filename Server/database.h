@@ -1,5 +1,5 @@
-#ifndef DATEBASEHANDLER_H
-#define DATEBASEHANDLER_H
+#ifndef DATABASE_H
+#define DATABASE_H
 #include <QDebug>
 #include <QByteArray>
 #include <QTextStream>
@@ -14,11 +14,11 @@
 #include <QRandomGenerator>
 #include "logger.h"
 
-class DateBaseHandler
+class Database
 {
 public:
 
-    static DateBaseHandler& getInstance();
+    static Database& getInstance();
     //response methods:
     QJsonObject logIn(QJsonObject data);
     QJsonObject getAccount_Number(QJsonObject data);
@@ -32,11 +32,11 @@ public:
     QJsonObject updateUser(QJsonObject data);
 
 private:
-    DateBaseHandler();
+    Database();
     QFile *DataBaseFile;
     Logger *DBLogger;
     QMutex mutex;// maybe changed.
     static qint16 userID;
 };
 
-#endif // DATEBASEHANDLER_H
+#endif // DATABASE_H

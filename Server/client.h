@@ -1,5 +1,5 @@
-#ifndef CLIENTHANDLER_H
-#define CLIENTHANDLER_H
+#ifndef CLIENT_H
+#define CLIENT_H
 
 #include <QObject>
 #include <QRunnable>
@@ -11,19 +11,19 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QFile>
-#include "requesthandler.h"
+#include "request.h"
 
-class ClientHandler : public QObject, public QRunnable
+class Client : public QObject, public QRunnable
 {
     Q_OBJECT
 public:
-    explicit ClientHandler(qintptr socketDescriptor = 0, QObject *parent = nullptr);
+    explicit Client(qintptr socketDescriptor = 0, QObject *parent = nullptr);
 
 private:
     qintptr m_socketDescriptor;
     QTcpSocket *socket;
     Logger *ClientLogs;
-    requestHandler *l_handler;
+    Request *l_handler;
 
 private slots:
     void disconnected();
@@ -36,4 +36,4 @@ public:
 
 
 
-#endif // CLIENTHANDLER_H
+#endif // CLIENT_H

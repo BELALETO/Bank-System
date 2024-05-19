@@ -7,8 +7,8 @@
 #include <QDebug>
 #include <QThreadPool>
 #include "logger.h"
-#include "clienthandler.h"
-#include "datebasehandler.h" // addition
+#include "client.h"
+#include "database.h" // addition
 class Server : public QTcpServer
 {
     Q_OBJECT
